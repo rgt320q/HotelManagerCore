@@ -27,7 +27,7 @@ namespace DataAccess.Concrete.EFCore
         {
             //Room Samples
             modelBuilder.Entity<Room>()
-                .HasData(                
+                .HasData(
                 new Room { Id = 1, Name = "102", SingleBed = 2, PersonTotal = 2, Price1 = 100 },
                 new Room { Id = 2, Name = "103", DoubleBed = 1, PersonTotal = 2, Price1 = 100 },
                 new Room { Id = 3, Name = "104", DoubleBed = 1, PersonTotal = 2, Price1 = 100 },
@@ -39,6 +39,26 @@ namespace DataAccess.Concrete.EFCore
                 new Room { Id = 9, Name = "110", DoubleBed = 1, PersonTotal = 2, Price1 = 100 },
                 new Room { Id = 10, Name = "101", DoubleBed = 1, PersonTotal = 2, Price1 = 100 }
                 );
+
+            modelBuilder.Entity<BaseConfiguration>()
+                .HasData(
+                new BaseConfiguration
+                {
+                    AccommodationFee = 100,
+                    Active = true,
+                    BreakfastPrice = 30,
+                    CompanyName = "Hotel Manager Core",
+                    DailyAdultFee = 110,
+                    DailyChildFee = 60,
+                    DailyGuestFeeForRoom = 0,
+                    DinnerPrice = 50,
+                    LunchPrice = 35,
+                    TaxRateForAccommodation = 1,
+                    TaxRateForKDV = 18,
+
+                }
+                );            
+
         }
 
 

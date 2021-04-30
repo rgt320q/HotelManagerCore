@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,10 +72,10 @@ namespace DataAccess.Migrations
                     ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DepartureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Days = table.Column<byte>(type: "tinyint", nullable: false),
-                    Children = table.Column<int>(type: "int", nullable: false),
-                    ChildrenWithFee = table.Column<int>(type: "int", nullable: false),
-                    Adult = table.Column<int>(type: "int", nullable: false),
-                    GuestTotal = table.Column<int>(type: "int", nullable: false),
+                    Children = table.Column<byte>(type: "tinyint", nullable: false),
+                    ChildrenWithFee = table.Column<byte>(type: "tinyint", nullable: false),
+                    Adult = table.Column<byte>(type: "tinyint", nullable: false),
+                    GuestTotal = table.Column<byte>(type: "tinyint", nullable: false),
                     ReservationNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccommodationType = table.Column<byte>(type: "tinyint", nullable: false),
                     BoardType = table.Column<byte>(type: "tinyint", nullable: true),
@@ -205,6 +205,23 @@ namespace DataAccess.Migrations
                         principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "Id", "Active", "Description", "Dirty", "DoubleBed", "InsertDateTime", "Name", "PersonTotal", "Price1", "Price2", "Price3", "Price4", "SingleBed", "UpdateDateTime" },
+                values: new object[,]
+                {
+                    { 1, true, null, false, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 107, DateTimeKind.Local).AddTicks(8191), "102", (byte)2, 100m, null, null, null, (byte)2, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(5493) },
+                    { 2, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7669), "103", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7676) },
+                    { 3, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7927), "104", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7929) },
+                    { 4, true, null, false, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7931), "105", (byte)1, 80m, null, null, null, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7932) },
+                    { 5, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7935), "106", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7936) },
+                    { 6, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7937), "107", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7939) },
+                    { 7, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7941), "108", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7942) },
+                    { 8, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7944), "109", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7945) },
+                    { 9, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7947), "110", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7948) },
+                    { 10, true, null, false, (byte)1, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7949), "101", (byte)2, 100m, null, null, null, (byte)0, new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7950) }
                 });
 
             migrationBuilder.CreateIndex(

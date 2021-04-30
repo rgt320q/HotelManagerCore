@@ -350,12 +350,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)0,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 720, DateTimeKind.Local).AddTicks(4706),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 107, DateTimeKind.Local).AddTicks(8191),
                             Name = "102",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)2,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(1959)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(5493)
                         },
                         new
                         {
@@ -363,12 +363,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(3755),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7669),
                             Name = "103",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(3760)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7676)
                         },
                         new
                         {
@@ -376,12 +376,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4022),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7927),
                             Name = "104",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4024)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7929)
                         },
                         new
                         {
@@ -389,12 +389,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)0,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4028),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7931),
                             Name = "105",
                             PersonTotal = (byte)1,
                             Price1 = 80m,
                             SingleBed = (byte)1,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4029)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7932)
                         },
                         new
                         {
@@ -402,12 +402,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4030),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7935),
                             Name = "106",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4032)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7936)
                         },
                         new
                         {
@@ -415,12 +415,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4034),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7937),
                             Name = "107",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4035)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7939)
                         },
                         new
                         {
@@ -428,12 +428,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4036),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7941),
                             Name = "108",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4037)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7942)
                         },
                         new
                         {
@@ -441,12 +441,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4039),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7944),
                             Name = "109",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4040)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7945)
                         },
                         new
                         {
@@ -454,12 +454,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4042),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7947),
                             Name = "110",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4043)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7948)
                         },
                         new
                         {
@@ -467,12 +467,12 @@ namespace DataAccess.Migrations
                             Active = true,
                             Dirty = false,
                             DoubleBed = (byte)1,
-                            InsertDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4044),
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7949),
                             Name = "101",
                             PersonTotal = (byte)2,
                             Price1 = 100m,
                             SingleBed = (byte)0,
-                            UpdateDateTime = new DateTime(2021, 4, 29, 18, 42, 23, 721, DateTimeKind.Local).AddTicks(4045)
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7950)
                         });
                 });
 

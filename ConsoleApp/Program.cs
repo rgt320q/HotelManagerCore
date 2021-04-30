@@ -1,6 +1,7 @@
 ﻿using DataAccess.Concrete.EFCore;
 using Entity.Concrete;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ConsoleApp
@@ -9,7 +10,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-
+            DateTime dateTimeNow = DateTime.Now.Date;
 
             //using (var dataBase = new MainContext())
             //{
@@ -35,33 +36,78 @@ namespace ConsoleApp
 
             using (var db = new MainContext())
             {
+                try
+                {
+                    //Reservation reservation = new Reservation()
+                    //{
 
-                Reservation reservation = new Reservation();
-                Guest guest = db.Guests.FirstOrDefault(g => g.Id == 5);
-                Room room = db.Rooms.FirstOrDefault(r => r.Id == 2);
-                Payment payment = db.Payments.FirstOrDefault(p => p.Id == 1);
+                    //    DepartureDate = dateTimeNow.AddDays(5),
+                    //    ArrivalDate = dateTimeNow,
+                    //    Adult = 0,
+                    //    Children = 0,
+                    //    AccommodationType = 1,
+                    //    Days = 0,
+                    //    GuestTotal = 0
+
+                    //};
+                    //Guest guest = new Guest()
+                    //{
+                    //    Name = "Anakin",
+                    //    Surname = "Skywalker",
+                    //    Email = "anakin@jedi.com",
+                    //    Phone = "05319323396",
+                    //    Gender = 1,
+                    //    GuestNote = "He is very angry",
+                    //    IdentNumber = "11111111111"
 
 
-                reservation.ArrivalDate = DateTime.Now.Date;
-                reservation.DepartureDate = DateTime.Now.AddDays(3).Date;
-                reservation.Adult = 2;
-                reservation.Children = 2;
-                //reservation.GuestTotal = 100;
-                reservation.Days = 100;
-                reservation.AccommodationType = 1;
+                    //};
+                    //Payment payment = new Payment()
+                    //{
+                    //    RoomFee = 100,
+                    //    TotalKdv = 18,
+                    //    TotalPrice = 100,
+                    //    TotalAccommodationTax = 1
+                    //};
 
-                reservation.Guests.Add(guest);
-                reservation.Rooms.Add(room);
-                Payment pay1 = new Payment() { TotalPrice = 100 };
-                reservation.Payments.Add(payment);
-                reservation.Payments.Add(pay1);
+                    //List<Room> room = db.Rooms.ToList();                    
 
-                db.Add(reservation);
-                var result = db.SaveChanges();
+                    //for (int i = 0; i < 2; i++)
+                    //{
+                    //    reservation.Rooms.Add(room[i]);
+                    //}
 
-                Console.WriteLine("Total result = " + result);
+                    //reservation.Guests.Add(guest);
+                    //reservation.Payments.Add(payment);
+
+                    //db.Add(reservation);
+                    //var result = db.SaveChanges();
+
+                    //Console.WriteLine("Total result = " + result);
+
+                    List<Reservation> reservationView = db.Reservations.ToList();
+
+                    Console.WriteLine("Total Reservation = " + reservationView.Count);
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine("There is an error = " + e);
+                }
+
 
             }
+
+            //using (var db = new MainContext())
+            //{
+            //    List<Reservation> reservation = db.Reservations.ToList();
+
+            //    foreach (var item in reservation)
+            //    {
+            //        Console.WriteLine("Record + " + item);
+            //    }
+
+            //}
 
             //DateTime date1 = DateTime.Now.Date;
             //DateTime date2 = DateTime.Now.AddDays(5).Date;

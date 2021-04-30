@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entity.Concrete
 {
-    public class Reservation
+    public class Reservation:IEntity
     {
-        private DateTime _arrivalDate;
-        private DateTime _departureDate;
-        private byte _dayTotal;
-        private byte _guestTotal;
-
         public Reservation()
         {
             //For null exeption error
@@ -25,47 +21,26 @@ namespace Entity.Concrete
         public bool Active { get; set; } = true;
 
         [DisplayName("Arrival Date")]
-        public DateTime ArrivalDate
-        {
-            get { return _arrivalDate; }
-            set { _arrivalDate = value; }
-        }
+        public DateTime ArrivalDate { get; set; }
 
         [DisplayName("Departure Date")]
-        public DateTime DepartureDate
-        {
-            get { return _departureDate; }
-            set { _departureDate = value; }
-        }
+        public DateTime DepartureDate { get; set; }
 
         [Range(1, 30)]
-        public byte Days
-        {
-            get { return _dayTotal; }
-            set { _dayTotal = Convert.ToByte(_departureDate.Subtract(_arrivalDate).Days); }
-        }
+        public byte Days { get; set; } = 1;
 
         [Range(0, 30)]
-        public byte Children { get; set; }
+        public byte Children { get; set; } = 0;
+
         [DisplayName("Children With Fee"), Range(0, 30)]
         public byte ChildrenWithFee { get; set; } = 0;
+
         [Range(1, 30)]
         public byte Adult { get; set; } = 1;
+
         [Range(1, 90)]
         [DisplayName("Guest Total")]
-        public byte GuestTotal
-        {
-            get { return _guestTotal; }
-            set
-            {
-                if (value!=1)
-                {
-                    _guestTotal = Convert.ToByte(Adult + Children + ChildrenWithFee);
-                }
-
-                _guestTotal = 1;
-            }
-        }
+        public byte GuestTotal { get; set; } = 1;
 
         [DisplayName("Reservation Note")]
         public string ReservationNote { get; set; }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20210428091120_Init")]
-    partial class Init
+    [Migration("20210430200551_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -245,8 +245,8 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Adult")
-                        .HasColumnType("int");
+                    b.Property<byte>("Adult")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime>("ArrivalDate")
                         .HasColumnType("datetime2");
@@ -257,11 +257,11 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Breakfast")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Children")
-                        .HasColumnType("int");
+                    b.Property<byte>("Children")
+                        .HasColumnType("tinyint");
 
-                    b.Property<int>("ChildrenWithFee")
-                        .HasColumnType("int");
+                    b.Property<byte>("ChildrenWithFee")
+                        .HasColumnType("tinyint");
 
                     b.Property<byte>("Days")
                         .HasColumnType("tinyint");
@@ -272,8 +272,8 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Dinner")
                         .HasColumnType("bit");
 
-                    b.Property<int>("GuestTotal")
-                        .HasColumnType("int");
+                    b.Property<byte>("GuestTotal")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime>("InsertDateTime")
                         .HasColumnType("datetime2");
@@ -344,6 +344,138 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)0,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 107, DateTimeKind.Local).AddTicks(8191),
+                            Name = "102",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)2,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(5493)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7669),
+                            Name = "103",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7676)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7927),
+                            Name = "104",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7929)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)0,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7931),
+                            Name = "105",
+                            PersonTotal = (byte)1,
+                            Price1 = 80m,
+                            SingleBed = (byte)1,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7932)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7935),
+                            Name = "106",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7936)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7937),
+                            Name = "107",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7939)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7941),
+                            Name = "108",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7942)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7944),
+                            Name = "109",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7945)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7947),
+                            Name = "110",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7948)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Active = true,
+                            Dirty = false,
+                            DoubleBed = (byte)1,
+                            InsertDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7949),
+                            Name = "101",
+                            PersonTotal = (byte)2,
+                            Price1 = 100m,
+                            SingleBed = (byte)0,
+                            UpdateDateTime = new DateTime(2021, 4, 30, 23, 5, 51, 108, DateTimeKind.Local).AddTicks(7950)
+                        });
                 });
 
             modelBuilder.Entity("GuestReservation", b =>
