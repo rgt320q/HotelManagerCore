@@ -16,7 +16,6 @@ namespace DataAccess.Concrete.EFCore
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Room> Rooms { get; set; }
 
-
         //public DbSet<Address> Addresses { get; set; }
         //public DbSet<City> Cities { get; set; }
         //public DbSet<District> Districts { get; set; }
@@ -44,6 +43,7 @@ namespace DataAccess.Concrete.EFCore
                 .HasData(
                 new BaseConfiguration
                 {
+                    Id = 1,
                     AccommodationFee = 100,
                     Active = true,
                     BreakfastPrice = 30,
@@ -54,15 +54,10 @@ namespace DataAccess.Concrete.EFCore
                     DinnerPrice = 50,
                     LunchPrice = 35,
                     TaxRateForAccommodation = 1,
-                    TaxRateForKDV = 18,
-
+                    TaxRateForKDV = 18
                 }
-                );            
-
+                );
         }
-
-
     }
-
 }
 

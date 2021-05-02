@@ -3,7 +3,7 @@ using Entity.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IReservationDal:IEntityRepository<Reservation>
+    public interface IReservationDal : IEntityRepository<Reservation>
     {
     }
 }

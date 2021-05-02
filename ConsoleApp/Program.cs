@@ -1,5 +1,10 @@
-﻿using DataAccess.Concrete.EFCore;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.Abstract;
+using Business.DependencyResolvers.Autofac;
+using DataAccess.Concrete.EFCore;
 using Entity.Concrete;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +13,12 @@ namespace ConsoleApp
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+            EfReservationDal efReservationDal = new EfReservationDal();
+
+
             DateTime dateTimeNow = DateTime.Now.Date;
 
             //using (var dataBase = new MainContext())
@@ -34,88 +43,82 @@ namespace ConsoleApp
 
             //}
 
-            using (var db = new MainContext())
+
+
+            Reservation reservation = new Reservation()
             {
-                try
-                {
-                    //Reservation reservation = new Reservation()
-                    //{
 
-                    //    DepartureDate = dateTimeNow.AddDays(5),
-                    //    ArrivalDate = dateTimeNow,
-                    //    Adult = 0,
-                    //    Children = 0,
-                    //    AccommodationType = 1,
-                    //    Days = 0,
-                    //    GuestTotal = 0
+                DepartureDate = dateTimeNow.AddDays(5),
+                ArrivalDate = dateTimeNow,
+                Adult = 2,
+                Children = 1,
+                AccommodationType = 1,
+                Days = 0,
+                GuestTotal = 1
 
-                    //};
-                    //Guest guest = new Guest()
-                    //{
-                    //    Name = "Anakin",
-                    //    Surname = "Skywalker",
-                    //    Email = "anakin@jedi.com",
-                    //    Phone = "05319323396",
-                    //    Gender = 1,
-                    //    GuestNote = "He is very angry",
-                    //    IdentNumber = "11111111111"
+            };
+            Guest guest = new Guest()
+            {
+                Name = "Anakin",
+                Surname = "Skywalker",
+                Email = "anakin@jedi.com",
+                Phone = "05319323396",
+                Gender = 1,
+                GuestNote = "He is very angry",
+                IdentNumber = "11111111111"
 
 
-                    //};
-                    //Payment payment = new Payment()
-                    //{
-                    //    RoomFee = 100,
-                    //    TotalKdv = 18,
-                    //    TotalPrice = 100,
-                    //    TotalAccommodationTax = 1
-                    //};
+            };
+            Payment payment = new Payment()
+            {
+                RoomFee = 100,
+                TotalKdv = 18,
+                TotalPrice = 100,
+                TotalAccommodationTax = 1
+            };
 
-                    //List<Room> room = db.Rooms.ToList();                    
+            //List<Room> room = db.Rooms.ToList();
 
-                    //for (int i = 0; i < 2; i++)
-                    //{
-                    //    reservation.Rooms.Add(room[i]);
-                    //}
-
-                    //reservation.Guests.Add(guest);
-                    //reservation.Payments.Add(payment);
-
-                    //db.Add(reservation);
-                    //var result = db.SaveChanges();
-
-                    //Console.WriteLine("Total result = " + result);
-
-                    List<Reservation> reservationView = db.Reservations.ToList();
-
-                    Console.WriteLine("Total Reservation = " + reservationView.Count);
-                }
-                catch (Exception e)
-                {
-
-                    Console.WriteLine("There is an error = " + e);
-                }
-
-
-            }
-
-            //using (var db = new MainContext())
+            //for (int i = 0; i < 1; i++)
             //{
-            //    List<Reservation> reservation = db.Reservations.ToList();
-
-            //    foreach (var item in reservation)
-            //    {
-            //        Console.WriteLine("Record + " + item);
-            //    }
-
+            //    reservation.Rooms.Add(room[i]);
             //}
 
-            //DateTime date1 = DateTime.Now.Date;
-            //DateTime date2 = DateTime.Now.AddDays(5).Date;
+            reservation.Guests.Add(guest);
+            reservation.Payments.Add(payment);
 
-            //int dayTotal = date2.Subtract(date1).Days;
+            efReservationDal.Add(reservation);
+            //var result = db.SaveChanges();
 
-            //Console.WriteLine("Total days = " + dayTotal);
+            Console.WriteLine("!!! !!! Added !!! !!!");
+
+            //List<Reservation> reservationView = db.Reservations.ToList();
+            //List<Reservation> reservations = efReservationDal.GetAll();
+
+            //Console.WriteLine("Total Reservation = " + reservations.Count);
+
+
 
         }
+
+        //using (var db = new MainContext())
+        //{
+        //    List<Reservation> reservation = db.Reservations.ToList();
+
+        //    foreach (var item in reservation)
+        //    {
+        //        Console.WriteLine("Record + " + item);
+        //    }
+
+        //}
+
+        //DateTime date1 = DateTime.Now.Date;
+        //DateTime date2 = DateTime.Now.AddDays(5).Date;
+
+        //int dayTotal = date2.Subtract(date1).Days;
+
+        //Console.WriteLine("Total days = " + dayTotal);
+
     }
 }
+
