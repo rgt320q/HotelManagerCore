@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Core.Entities;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entity.Concrete
 {
-    public class Payment
+    public class Payment:IEntity
     {
         public int Id { get; set; }
         public bool Active { get; set; } = true;

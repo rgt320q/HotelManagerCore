@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.ComponentModel;
 
 namespace Entity.Concrete
 {
-    public class BaseConfiguration
+    public class BaseConfiguration:IEntity
     {
         public int Id { get; set; }
         public bool Active { get; set; } = true;

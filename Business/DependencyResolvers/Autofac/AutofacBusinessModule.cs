@@ -13,11 +13,21 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            //Dal Register.
 
-            builder.RegisterType<EfReservationDal>().As<IReservationDal>();           
-            
-            
+            builder.RegisterType<EfReservationDal>().As<IReservationDal>();
+            builder.RegisterType<EfBaseConfigurationDal>().As<IBaseConfigurationDal>();
+            builder.RegisterType<EfGuestDal>().As<IGuestDal>();
+            builder.RegisterType<EfPaymentDal>().As<IPaymentDal>();
+            builder.RegisterType<EfRoomDal>().As<IRoomDal>();
+
+            //Service Register
+
             builder.RegisterType<ReservationManager>().As<IReservationService>();
+            builder.RegisterType<BaseConfigurationManager>().As<IBaseConfigurationService>();
+            builder.RegisterType<GuestManager>().As<IGuestService>();
+            builder.RegisterType<PaymentManager>().As<IPaymentService>();
+            builder.RegisterType<RoomManager>().As<IRoomService>();
 
             //builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 

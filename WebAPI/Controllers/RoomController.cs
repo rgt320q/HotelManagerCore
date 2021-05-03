@@ -10,19 +10,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationController : ControllerBase
+    public class RoomController : ControllerBase
     {
-        IReservationService _reservationService;
+        IRoomService _roomService;
 
-        public ReservationController(IReservationService reservationService)
+        public RoomController(IRoomService roomService)
         {
-            _reservationService = reservationService;
+            _roomService = roomService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _reservationService.GetAll();
+            var result = _roomService.GetAll();
 
             if (result.Success) return Ok(result);
 

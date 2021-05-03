@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entity.Concrete
 {
-    public class Guest
+    public class Guest:IEntity
     {
         [Key]
         public int Id { get; set; }

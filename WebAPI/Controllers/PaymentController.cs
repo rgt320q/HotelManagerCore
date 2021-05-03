@@ -10,19 +10,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationController : ControllerBase
+    public class PaymentController : ControllerBase
     {
-        IReservationService _reservationService;
+        IPaymentService _paymentService;
 
-        public ReservationController(IReservationService reservationService)
+        public PaymentController(IPaymentService paymentService)
         {
-            _reservationService = reservationService;
+            _paymentService = paymentService;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetList()
         {
-            var result = _reservationService.GetAll();
+            var result = _paymentService.GetAll();
 
             if (result.Success) return Ok(result);
 

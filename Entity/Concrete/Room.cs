@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Entity.Concrete
 {
-    public class Room
+    public class Room:IEntity
     {
         public int Id { get; set; }
         public bool Active { get; set; } = true;
