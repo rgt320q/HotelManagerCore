@@ -13,8 +13,23 @@ namespace Core.DataAccess
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
-        void Add(T entity);
+        T GetLastOrDefault(Expression<Func<T, object>> filter);
+        T GetOneInclude(
+            Expression<Func<T, object>> include,
+            Expression<Func<T, bool>> filter);
+        T GetTwoInclude(
+            Expression<Func<T, object>> includeOne, 
+            Expression<Func<T, object>> includeTwo, 
+            Expression<Func<T, bool>> filter);
+        T GetThreeInclude(
+            Expression<Func<T, object>> includeOne, 
+            Expression<Func<T, object>> includeTwo, 
+            Expression<Func<T, object>> includeThree, 
+            Expression<Func<T, bool>> filter);
+        void Add(T entity);       
+        int Attach(T entity);
         void Update(T entity);
         void Delete(T entity);
+        void SaveChanges();
     }
 }

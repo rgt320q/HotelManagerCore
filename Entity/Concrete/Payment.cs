@@ -1,5 +1,7 @@
 ﻿using Core.Entities;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,80 +9,123 @@ namespace Entity.Concrete
 {
     public class Payment:IEntity
     {
-        public int Id { get; set; }
+        public Payment()
+        {
+            this.PaidFees = new Collection<PaidFee>();
+        }
+
+        public int PaymentId { get; set; }
         public bool Active { get; set; } = true;
 
         [DisplayName("Total Price")]
-        public decimal TotalPrice { get; set; } = 0;
+        [Range(0.00, 10000.00)]
+        public decimal TotalPrice { get; set; }
+
+        public bool IsThePaymentComplete { get; set; } = false;
 
         [DisplayName("Total KDV")]
+        [Range(0.00, 10000.00)]
         public decimal TotalKdv { get; set; }
 
         [DisplayName("Total Accommodation Tax")]
+        [Range(0.00, 10000.00)]
         public decimal TotalAccommodationTax { get; set; }
 
         [DisplayName("The Extras Price")]
-        public decimal TheExtrasPrice { get; set; } = 0;
+        [Range(0.00, 10000.00)]
+        public decimal TheExtrasPrice { get; set; }
 
         [DisplayName("Discount Price")]
         [Range(0.00, 10000.00)]
-        public decimal DiscountPrice { get; set; } = 0;
+        public decimal DiscountPrice { get; set; }
 
-        [DisplayName("Daily Adult Fee")]
-        public decimal DailyAdultFee { get; set; } = 0;
+        //Daily prices.
+        [DisplayName("Daily Adult Price")]
+        [Range(0.00, 10000.00)]
+        public decimal DailyAdultPrice { get; set; }      
 
-        [DisplayName("Daily Guest Fee For Room")]
-        public decimal DailyGuestFeeForRoom { get; set; } = 0;
+        [DisplayName("Daily Child Price")]
+        [Range(0.00, 10000.00)]
+        public decimal DailyChildPrice { get; set; }        
+        
+        [DisplayName("Daily Accommodation Price")]
+        [Range(0.00, 10000.00)]
+        public decimal DailyAccommodationPrice { get; set; }
 
-        [DisplayName("Daily Child Fee")]
-        public decimal DailyChildFee { get; set; } = 0;
+        [DisplayName("Daily Breakfast Price")]
+        [Range(0.00, 10000.00)]
+        public decimal DailyBreakfastPrice { get; set; }
 
-        [DisplayName("Room Fee")]
-        public decimal RoomFee { get; set; } = 0;
+        [DisplayName("Daily Lunch Price")]
+        [Range(0.00, 10000.00)]
+        public decimal DailyLunchPrice { get; set; }
 
-        [DisplayName("Accommodation Fee")]
-        public decimal AccommodationFee { get; set; } = 0;
+        [DisplayName("Daily Dinner Price")]
+        [Range(0.00, 10000.00)]
+        public decimal DailyDinnerPrice { get; set; }
 
-        [DisplayName("Breakfast Price")]
-        public decimal BreakfastPrice { get; set; } = 0;
+        //Total daily prices.
+        [DisplayName("Total Daily Adult Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyAdultPrice { get; set; }
 
-        [DisplayName("Lunch Price")]
-        public decimal LunchPrice { get; set; } = 0;
+        [DisplayName("Total Daily Child Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyChildPrice { get; set; }
 
-        [DisplayName("Dinner Price")]
-        public decimal DinnerPrice { get; set; } = 0;
+        [DisplayName("Total Daily Room Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyRoomPrice { get; set; }
 
-        [DisplayName("Total Daily Adult Fee")]
-        public decimal TotalDailyAdultFee { get; set; } = 0;
+        [DisplayName("Daily Accommodation Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyAccommodationPrice { get; set; }
 
-        [DisplayName("Total Daily Guest Fee For Room")]
-        public decimal TotalDailyGuestFeeForRoom { get; set; } = 0;
+        [DisplayName("Daily Breakfast Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyBreakfastPrice { get; set; }
 
-        [DisplayName("Total Child Fee")]
-        public decimal TotalChildFee { get; set; } = 0;
+        [DisplayName("Daily Lunch Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyLunchPrice { get; set; }
 
-        [DisplayName("Total Room Fee")]
-        public decimal TotalRoomFee { get; set; } = 0;
+        [DisplayName("Daily Dinner Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalDailyDinnerPrice { get; set; }
 
-        [DisplayName("Total Accommodation Fee")]
-        public decimal TotalAccommodationFee { get; set; } = 0;
+        //Total prices
+        [DisplayName("Total Adult Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalAdultPrice { get; set; }
 
-        [DisplayName("Total Break Fast Fee")]
-        public decimal TotalBreakFastFee { get; set; } = 0;
+        [DisplayName("Total Child Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalChildPrice { get; set; }
 
-        [DisplayName("Total Lunch Fee")]
-        public decimal TotalLunchFee { get; set; } = 0;
+        [DisplayName("Total Room Price")]
+        [Range(0.00, 10000.00)]
+        public decimal TotalRoomPrice { get; set; }
 
-        [DisplayName("Total Dinner Fee")]
-        public decimal TotalDinnerFee { get; set; } = 0;
+        [DisplayName("Total Accommodation Price")]
+        public decimal TotalAccommodationPrice { get; set; } 
 
-        [DisplayName("Insert Date Time"), ScaffoldColumn(false)]
+        [DisplayName("Total Break Fast Price")]
+        public decimal TotalBreakfastPrice { get; set; }
+
+        [DisplayName("Total Lunch Price")]
+        public decimal TotalLunchPrice { get; set; }
+
+        [DisplayName("Total Dinner Price")]
+        public decimal TotalDinnerPrice { get; set; }
+        
+        //Informations
+        [DisplayName("Insert Date Time")]
         public DateTime InsertDateTime { get; set; } = DateTime.Now;
 
-        [DisplayName("Update Date Time"), ScaffoldColumn(false)]
-        public DateTime? UpdateDateTime { get; set; } = DateTime.Now;
+        [DisplayName("Update Date Time")]
+        public DateTime? UpdateDateTime { get; set; } = DateTime.Now;       
 
-        public Reservation Reservation { get; set; }
-       
+        public ICollection<PaidFee> PaidFees { get; set; }
+
     }
 }

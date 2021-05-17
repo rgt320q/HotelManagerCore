@@ -1,13 +1,6 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Business.Abstract;
-using Business.DependencyResolvers.Autofac;
-using DataAccess.Concrete.EFCore;
+﻿using DataAccess.Concrete.EFCore;
 using Entity.Concrete;
-using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ConsoleApp
 {
@@ -69,9 +62,10 @@ namespace ConsoleApp
 
 
             };
+
             Payment payment = new Payment()
             {
-                RoomFee = 100,
+                TotalRoomPrice = 100,
                 TotalKdv = 18,
                 TotalPrice = 100,
                 TotalAccommodationTax = 1
@@ -85,7 +79,8 @@ namespace ConsoleApp
             //}
 
             reservation.Guests.Add(guest);
-            reservation.Payments.Add(payment);
+
+            reservation.Payment=payment;
 
             efReservationDal.Add(reservation);
             //var result = db.SaveChanges();

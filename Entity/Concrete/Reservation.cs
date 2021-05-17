@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,14 +12,15 @@ namespace Entity.Concrete
         public Reservation()
         {
             //For null exeption error
-            this.Rooms = new HashSet<Room>();
-            this.Guests = new HashSet<Guest>();
-            this.Payments = new HashSet<Payment>();
+            this.Rooms = new Collection<Room>();
+            this.Guests = new Collection<Guest>();            
         }
 
-        public int Id { get; set; }
+        public int ReservationId { get; set; }
         [Required]
         public bool Active { get; set; } = true;
+
+        public byte Status { get; set; } = 1;
 
         [DisplayName("Arrival Date")]
         public DateTime ArrivalDate { get; set; }
@@ -42,7 +44,12 @@ namespace Entity.Concrete
         [DisplayName("Guest Total")]
         public byte GuestTotal { get; set; } = 1;
 
+        [Range(0, 90)]
+        [DisplayName("Guest Capacity")]
+        public byte GuestCapacity { get; set; }
+
         [DisplayName("Reservation Note")]
+        [StringLength(150)]
         public string ReservationNote { get; set; }
         [DisplayName("Accommodation Type")]
         public byte AccommodationType { get; set; }
@@ -57,8 +64,11 @@ namespace Entity.Concrete
         [DisplayName("Update Date Time")]
         public DateTime UpdateDateTime { get; set; } = DateTime.Now;
 
+        public int PaymentId { get; set; }
+
+        public Payment Payment { get; set; }
         public ICollection<Room> Rooms { get; set; }
         public ICollection<Guest> Guests { get; set; }
-        public ICollection<Payment> Payments { get; set; }
+        
     }
 }

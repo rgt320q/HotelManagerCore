@@ -9,22 +9,23 @@ namespace Entity.Concrete
     public class Guest:IEntity
     {
         [Key]
-        public int Id { get; set; }
+        public int GuestId { get; set; }
+
         public bool Active { get; set; } = true;
 
         [DisplayName("Type Of Guest")]
         public int TypeOfGuest { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Surname { get; set; }
 
         //[Required]
         [Phone]
-        [MaxLength(11)]
-        [MinLength(11)]
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
@@ -35,7 +36,6 @@ namespace Entity.Concrete
         [Required]
         [MaxLength(11)]
         [MinLength(11)]
-        //[Index(IsUnique = true)]
         [DisplayName("Ident Number")]
         public string IdentNumber { get; set; }
 
@@ -45,24 +45,31 @@ namespace Entity.Concrete
         [DisplayName("Birth Day")]
         public DateTime? Birthday { get; set; }
 
+        [StringLength(50)]
         [DisplayName("Father Name")]
         public string FatherName { get; set; }
 
+        [StringLength(50)]
         [DisplayName("Mother Name")]
         public string MotherName { get; set; }
 
+        [StringLength(50)]
         [DisplayName("Martial Status")]
         public string MartialStatus { get; set; }
 
+        [StringLength(50)]
         [DisplayName("Ident Type")]
         public string IdentType { get; set; }
 
+        [StringLength(50)]
         [DisplayName("Ident Serial No")]
         public string IdentSerialNo { get; set; }
 
+        [StringLength(12)]
         [DisplayName("Car Plate")]
         public string CarPlate { get; set; }
 
+        [StringLength(150)]
         [DisplayName("Guest Note")]
         public string GuestNote { get; set; }
 

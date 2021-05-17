@@ -2,7 +2,9 @@
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Business.Concrete
 {
@@ -20,6 +22,11 @@ namespace Business.Concrete
             _roomDal.Add(room);
 
             return new SuccessResult("Room successfully added.");
+        }
+
+        public IDataResult<Room> Get(Expression<Func<Room, bool>> filter)
+        {
+            return new SuccessDataResult<Room>(_roomDal.Get(filter));
         }
 
         public IDataResult<List<Room>> GetAll()
