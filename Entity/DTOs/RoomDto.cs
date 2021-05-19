@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,12 @@ namespace Entity.DTOs
 {
     public class RoomDto
     {
-        public int Id { get; set; }
+        //public RoomDto()
+        //{
+        //    Reservations = new Collection<ReservationGetDto>();
+        //}
+
+        public int RoomId { get; set; }
         public bool Active { get; set; } = true;
         public string Name { get; set; }
         public bool Dirty { get; set; }
@@ -20,5 +26,7 @@ namespace Entity.DTOs
         public decimal? Price2 { get; set; }
         public decimal? Price3 { get; set; }
         public decimal? Price4 { get; set; }
+
+        virtual public IEnumerable<ReservationGetDto> Reservations { get; set; }
     }
 }

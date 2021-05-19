@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,71 +7,51 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entity.Concrete
 {
-    public class Guest:IEntity
+    [Index(nameof(IdentNumber), IsUnique = true)]
+    public class Guest : IEntity
     {
         [Key]
         public int GuestId { get; set; }
 
         public bool Active { get; set; } = true;
 
-        [DisplayName("Type Of Guest")]
-        public int TypeOfGuest { get; set; }
-
-        [Required]
-        [StringLength(50)]
+        [Required, StringLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required, StringLength(50)]
         public string Surname { get; set; }
 
-        //[Required]
-        [Phone]
-        [DataType(DataType.PhoneNumber)]
+        [Required, Phone, DataType(DataType.PhoneNumber), StringLength(15)]
         public string Phone { get; set; }
 
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
+        [EmailAddress, DataType(DataType.EmailAddress), StringLength(80)]
         public string Email { get; set; }
 
-        [Required]
-        [MaxLength(11)]
-        [MinLength(11)]
-        [DisplayName("Ident Number")]
+        [DisplayName("Ident Number"), Required, MinLength(11), MaxLength(11)]
         public string IdentNumber { get; set; }
 
-        [Required]
-        public int Gender { get; set; }
+        [Required, Range(0, 1)]
+        public byte Gender { get; set; }
 
-        [DisplayName("Birth Day")]
+        [DisplayName("Birth Day"), DataType(DataType.Date)]
         public DateTime? Birthday { get; set; }
 
-        [StringLength(50)]
-        [DisplayName("Father Name")]
+        [DisplayName("Father Name"), StringLength(50)]
         public string FatherName { get; set; }
 
-        [StringLength(50)]
-        [DisplayName("Mother Name")]
+        [DisplayName("Mother Name"), StringLength(50)]
         public string MotherName { get; set; }
 
-        [StringLength(50)]
-        [DisplayName("Martial Status")]
-        public string MartialStatus { get; set; }
+        [DisplayName("Martial Status"), Range(0, 4)]
+        public byte MartialStatus { get; set; }
 
-        [StringLength(50)]
-        [DisplayName("Ident Type")]
-        public string IdentType { get; set; }
-
-        [StringLength(50)]
-        [DisplayName("Ident Serial No")]
+        [DisplayName("Ident Serial No"), StringLength(50)]
         public string IdentSerialNo { get; set; }
 
-        [StringLength(12)]
-        [DisplayName("Car Plate")]
+        [DisplayName("Car Plate"), StringLength(12)]
         public string CarPlate { get; set; }
 
-        [StringLength(150)]
-        [DisplayName("Guest Note")]
+        [DisplayName("Guest Note"), StringLength(150)]
         public string GuestNote { get; set; }
 
         [DisplayName("Insert Date Time")]
@@ -79,6 +60,6 @@ namespace Entity.Concrete
         [DisplayName("Update Date Time")]
         public DateTime UpdateDateTime { get; set; } = DateTime.Now;
 
-        public ICollection<Reservation> Reservations { get; set; }
+        virtual public IEnumerable<Reservation> Reservations { get; set; }
     }
 }

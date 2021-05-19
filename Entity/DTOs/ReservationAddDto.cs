@@ -8,7 +8,7 @@ namespace Entity.DTOs
 {
     public class ReservationAddDto
     {
-        public ReservationDto ReservationDto { get; set; }
+        public ReservationGetDto ReservationDto { get; set; }
         public GuestDto GuestDto { get; set; }
         public RoomDto RoomDto { get; set; }
         public PaymentDto PaymentDto { get; set; }

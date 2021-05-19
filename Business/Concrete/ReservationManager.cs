@@ -36,29 +36,27 @@ namespace Business.Concrete
             //It going to add the entity to the "guests" table.
             CheckGuestExistAccordingId(reservation);
 
-            //Guest capacity for reservation.
+
             GuestCapacityCalculation(reservation);
             GuestTotalCalculation(reservation);
             TotalDaysCalculation(reservation);
             DailyPricesCalculation(reservation, baseConfiguration);
 
             //For Room
-            if (reservation.AccommodationType == 0)
-            {
-                PaymentCalculationForRoom(reservation);
-            }
+            if (reservation.AccommodationType == 0) PaymentCalculationForRoom(reservation);
 
             //For Person
-            else if (reservation.AccommodationType == 1)
-            {
-                PaymentCalculationForPerson(reservation);
-            }
+            if (reservation.AccommodationType == 1) PaymentCalculationForPerson(reservation);
+
+            BoardTypeConfiguration(reservation);
 
             TaxesCalculation(reservation, baseConfiguration);
             _reservationDal.Attach(reservation);
 
             return new SuccessResult("Reservation successfully added.");
         }
+
+       
 
         public IDataResult<Reservation> Get(Expression<Func<Reservation, bool>> filter)
         {
@@ -221,6 +219,70 @@ namespace Business.Concrete
 
         }
 
-    }
+        /// <summary>
+        /// It make selection confiration according boardtype. For example: if board type BB => Breakfast = true others false.
+        /// Board type = 0 is Bed And Breakfast (BB)
+        /// Board type = 1 is Half Board (HB)
+        /// Board type = 2 is Full Board (FB)
+        /// Board type = 3 is All Inclusive (AI)
+        /// </summary>
+        /// <param name="reservation">Incoming Reservation entity from the (API or another) interface.</param>
+        private static void BoardTypeConfiguration(Reservation reservation)
+        {            
+            if (reservation.BoardType == 0)
+            {
+                reservation.Breakfast = true;
+                reservation.Lunch = false;
+                reservation.Dinner = false;
+                reservation.Payment.DailyBreakfastPrice = 0;
+                reservation.Payment.TotalDailyBreakfastPrice = 0;
+                reservation.Payment.TotalBreakfastPrice = 0;
+            }
 
+            if (reservation.BoardType == 1)
+            {
+                reservation.Breakfast = true;
+                reservation.Lunch = false;
+                reservation.Dinner = true;
+                reservation.Payment.DailyBreakfastPrice = 0;
+                reservation.Payment.TotalDailyBreakfastPrice = 0;
+                reservation.Payment.TotalBreakfastPrice = 0;
+                reservation.Payment.DailyDinnerPrice = 0;
+                reservation.Payment.TotalDailyDinnerPrice = 0;
+                reservation.Payment.TotalDinnerPrice = 0;
+            }
+
+            if (reservation.BoardType == 2)
+            {
+                reservation.Breakfast = true;
+                reservation.Lunch = true;
+                reservation.Dinner = true;
+                reservation.Payment.DailyBreakfastPrice = 0;
+                reservation.Payment.TotalDailyBreakfastPrice = 0;
+                reservation.Payment.TotalBreakfastPrice = 0;
+                reservation.Payment.DailyDinnerPrice = 0;
+                reservation.Payment.TotalDailyDinnerPrice = 0;
+                reservation.Payment.TotalDinnerPrice = 0;
+                reservation.Payment.DailyLunchPrice = 0;
+                reservation.Payment.TotalDailyLunchPrice = 0;
+                reservation.Payment.TotalLunchPrice = 0;
+            }
+
+            if (reservation.BoardType == 3)
+            {
+                reservation.Breakfast = true;
+                reservation.Lunch = true;
+                reservation.Dinner = true;
+                reservation.Payment.DailyBreakfastPrice = 0;
+                reservation.Payment.TotalDailyBreakfastPrice = 0;
+                reservation.Payment.TotalBreakfastPrice = 0;
+                reservation.Payment.DailyDinnerPrice = 0;
+                reservation.Payment.TotalDailyDinnerPrice = 0;
+                reservation.Payment.TotalDinnerPrice = 0;
+                reservation.Payment.DailyLunchPrice = 0;
+                reservation.Payment.TotalDailyLunchPrice = 0;
+                reservation.Payment.TotalLunchPrice = 0;
+            }
+        }
+    }
 }

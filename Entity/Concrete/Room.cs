@@ -8,10 +8,10 @@ namespace Entity.Concrete
 {
     public class Room:IEntity
     {
-        public Room()
-        {
-            Reservations = new Collection<Reservation>();
-        }
+        //public Room()
+        //{
+        //    Reservations = new Collection<Reservation>();
+        //}
 
         public int RoomId { get; set; }
         public bool Active { get; set; } = true;
@@ -32,6 +32,6 @@ namespace Entity.Concrete
         public DateTime InsertDateTime { get; set; } = DateTime.Now;
         public DateTime UpdateDateTime { get; set; } = DateTime.Now;
 
-        public ICollection<Reservation> Reservations { get; set; }
+        virtual public IEnumerable<Reservation> Reservations { get; set; }
     }
 }

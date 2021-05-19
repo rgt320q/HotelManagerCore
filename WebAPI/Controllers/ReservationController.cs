@@ -1,5 +1,7 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,18 +16,21 @@ namespace WebAPI.Controllers
     public class ReservationController : ControllerBase
     {
         IReservationService _reservationService;
+        IMapper _mapper;
         //IRoomService _roomService;
         //IGuestService _guestService;
         //IPaymentService _paymentService;
 
         public ReservationController(
-            IReservationService reservationService
+            IReservationService reservationService,
+            IMapper mapper
             //, IRoomService roomService,
             //IGuestService guestService,
             //IPaymentService paymentService
             )
         {
             _reservationService = reservationService;
+            _mapper = mapper;
             //_roomService = roomService;
             //_guestService = guestService;
             //_paymentService = paymentService;
@@ -37,7 +42,9 @@ namespace WebAPI.Controllers
 
             var result = _reservationService.GetAll();
 
-            if (result.Success) return Ok(result);
+            var reservationMap = _mapper.Map<List<ReservationGetDto>>(result.Data);
+
+            if (result.Success) return Ok(reservationMap);
 
             return BadRequest(result);
 
@@ -46,9 +53,13 @@ namespace WebAPI.Controllers
         [HttpGet("Get")]
         public IActionResult Get(int id)
         {
-            var result = _reservationService.GetThreeIncludes(i=>i.Rooms,i=>i.Guests,i=>i.Payment.PaidFees,i => i.ReservationId == id);
+            var result = _reservationService.GetThreeIncludes(i=>i.Rooms,i=>i.Guests,i=>i.Payment.PaidFees,i => i.ReservationId == id);           
 
-            if (result.Success) return Ok(result);
+            if (result.Success) {
+
+                var reservationMap = _mapper.Map<ReservationGetDto>(result.Data);
+                return Ok(reservationMap);
+            }            
 
             return BadRequest(result);            
         }
