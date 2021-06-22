@@ -8,7 +8,8 @@ namespace Business.Abstract
 {
     public interface IReservationService
     {
-        IDataResult<List<Reservation>> GetAll();
+        IDataResult<List<Reservation>> GetAll(Expression<Func<Reservation, bool>> filter);
+
         IDataResult<Reservation> GetOneInclude(
             Expression<Func<Reservation, object>> 
             include,Expression<Func<Reservation, bool>> filter);
@@ -26,6 +27,9 @@ namespace Business.Abstract
 
         IDataResult<Reservation> Get(Expression<Func<Reservation, bool>> filter);
         IResult Add(Reservation reservation);
+        IResult Update(Reservation reservation);
+        IResult Delete(Reservation reservation);
+        IResult HardDelete(Reservation reservation);
 
     }
 }

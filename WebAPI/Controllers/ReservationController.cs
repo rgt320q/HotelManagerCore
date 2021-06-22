@@ -17,30 +17,19 @@ namespace WebAPI.Controllers
     {
         IReservationService _reservationService;
         IMapper _mapper;
-        //IRoomService _roomService;
-        //IGuestService _guestService;
-        //IPaymentService _paymentService;
 
         public ReservationController(
             IReservationService reservationService,
-            IMapper mapper
-            //, IRoomService roomService,
-            //IGuestService guestService,
-            //IPaymentService paymentService
-            )
+            IMapper mapper)
         {
             _reservationService = reservationService;
             _mapper = mapper;
-            //_roomService = roomService;
-            //_guestService = guestService;
-            //_paymentService = paymentService;
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-
-            var result = _reservationService.GetAll();
+            var result = _reservationService.GetAll(i => i.Active);
 
             var reservationMap = _mapper.Map<List<ReservationGetDto>>(result.Data);
 
@@ -53,18 +42,19 @@ namespace WebAPI.Controllers
         [HttpGet("Get")]
         public IActionResult Get(int id)
         {
-            var result = _reservationService.GetThreeIncludes(i=>i.Rooms,i=>i.Guests,i=>i.Payment.PaidFees,i => i.ReservationId == id);           
+            var result = _reservationService.GetThreeIncludes(i => i.Rooms, i => i.Guests, i => i.Payment.PaidFees, i => i.Active && i.ReservationId == id);
 
-            if (result.Success) {
+            if (result.Success)
+            {
 
                 var reservationMap = _mapper.Map<ReservationGetDto>(result.Data);
                 return Ok(reservationMap);
-            }            
+            }
 
-            return BadRequest(result);            
+            return BadRequest(result);
         }
 
-        [HttpPost("AddReservation")]
+        [HttpPost("")]
         public IActionResult Add(Reservation reservation)
         {
             var result = _reservationService.Add(reservation);
@@ -73,5 +63,36 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpPut("Update")]
+        public IActionResult Update(Reservation reservation)
+        {
+            var result = _reservationService.Update(reservation);
+
+            if (result.Success) return Ok(result);
+
+            return BadRequest(result);            
+        }
+
+        [HttpDelete("Delete")]
+        public IActionResult Delete(Reservation reservation)
+        {
+            var result = _reservationService.Delete(reservation);
+
+            if (result.Success) return Ok(result);
+
+            return BadRequest(result);
+        }
+
+        [HttpDelete("HardDelete")]
+        public IActionResult HardDelete(Reservation reservation)
+        {
+            var result = _reservationService.HardDelete(reservation);
+
+            if (result.Success) return Ok(result);
+
+            return BadRequest(result);
+        }
+
     }
 }

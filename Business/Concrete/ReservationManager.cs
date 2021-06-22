@@ -2,7 +2,6 @@
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -28,44 +27,14 @@ namespace Business.Concrete
             _guestDal = guestDal;
         }
 
-        public IResult Add(Reservation reservation)
-        {
-            var baseConfiguration = _baseConfigurationDal.GetLastOrDefault(i => i.BaseConfigurationId);
-
-            //If the "GuestId" entered but the Id doesn't exist in the "guests" table.
-            //It going to add the entity to the "guests" table.
-            CheckGuestExistAccordingId(reservation);
-
-
-            GuestCapacityCalculation(reservation);
-            GuestTotalCalculation(reservation);
-            TotalDaysCalculation(reservation);
-            DailyPricesCalculation(reservation, baseConfiguration);
-
-            //For Room
-            if (reservation.AccommodationType == 0) PaymentCalculationForRoom(reservation);
-
-            //For Person
-            if (reservation.AccommodationType == 1) PaymentCalculationForPerson(reservation);
-
-            BoardTypeConfiguration(reservation);
-
-            TaxesCalculation(reservation, baseConfiguration);
-            _reservationDal.Attach(reservation);
-
-            return new SuccessResult("Reservation successfully added.");
-        }
-
-       
-
         public IDataResult<Reservation> Get(Expression<Func<Reservation, bool>> filter)
         {
             return new SuccessDataResult<Reservation>(_reservationDal.Get(filter));
         }
 
-        public IDataResult<List<Reservation>> GetAll()
+        public IDataResult<List<Reservation>> GetAll(Expression<Func<Reservation, bool>> filter)
         {
-            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetAll());
+            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetAll(filter));
         }
 
         public IDataResult<Reservation> GetOneInclude(Expression<Func<Reservation, object>> include, Expression<Func<Reservation, bool>> filter)
@@ -90,7 +59,83 @@ namespace Business.Concrete
             return new SuccessDataResult<Reservation>(_reservationDal.GetThreeInclude(includeOne, includeTwo, includeThree, filter));
         }
 
+        public IResult Add(Reservation reservation)
+        {
 
+            var baseConfiguration = _baseConfigurationDal.GetLastOrDefault(i => i.BaseConfigurationId);
+
+            //If the "GuestId" entered but the Id doesn't exist in the "guests" table. It going to add the entity to the "guests" table.         
+            CheckGuestExistAccordingId(reservation);
+            GuestCapacityCalculation(reservation);
+            GuestTotalCalculation(reservation);
+            TotalDaysCalculation(reservation);
+            DailyPricesCalculation(reservation, baseConfiguration);
+
+            //For Room
+            if (reservation.AccommodationType == 0) PaymentCalculationForRoom(reservation);
+
+            //For Person
+            if (reservation.AccommodationType == 1) PaymentCalculationForPerson(reservation);
+
+            BoardTypeConfiguration(reservation);
+
+            TaxesCalculation(reservation, baseConfiguration);
+            _reservationDal.Attach(reservation);
+
+            return new SuccessResult("Reservation successfully added.");
+        }
+
+        public IResult Update(Reservation reservation)
+        {
+            var baseConfiguration = _baseConfigurationDal.GetLastOrDefault(i => i.BaseConfigurationId);
+            var reservationInDb = _reservationDal.Get(i => i.ReservationId == reservation.ReservationId);
+
+            reservationInDb = reservation;
+
+
+            CheckGuestExistAccordingId(reservationInDb);
+            GuestCapacityCalculation(reservationInDb);
+            GuestTotalCalculation(reservationInDb);
+            TotalDaysCalculation(reservationInDb);
+            DailyPricesCalculation(reservationInDb, baseConfiguration);
+
+            //For Room
+            if (reservationInDb.AccommodationType == 0) PaymentCalculationForRoom(reservationInDb);
+
+            //For Person
+            if (reservationInDb.AccommodationType == 1) PaymentCalculationForPerson(reservationInDb);
+
+            BoardTypeConfiguration(reservationInDb);
+
+            TaxesCalculation(reservationInDb, baseConfiguration);
+
+
+            _reservationDal.Update(reservationInDb);
+
+            return new SuccessResult("Reservation successfull updated.");
+        }
+
+        public IResult Delete(Reservation reservation)
+        {
+            reservation.Active = false;
+            reservation.Payment.Active = false;
+
+            foreach (var item in reservation.Payment.PaidFees)
+            {
+                item.Active = false;
+            }
+
+
+            return new SuccessResult("Reservation successfull deleted.");
+        }
+
+        public IResult HardDelete(Reservation reservation)
+        {
+
+            _reservationDal.Delete(reservation);
+
+            return new SuccessResult("Reservation successfull hard deleted.");
+        }
 
 
 
@@ -228,7 +273,7 @@ namespace Business.Concrete
         /// </summary>
         /// <param name="reservation">Incoming Reservation entity from the (API or another) interface.</param>
         private static void BoardTypeConfiguration(Reservation reservation)
-        {            
+        {
             if (reservation.BoardType == 0)
             {
                 reservation.Breakfast = true;
